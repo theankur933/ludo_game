@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+        <style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+    </head>
+    <body>
+        <title>Ludo Night</title>
+        <meta name="claude:viewport-fit-sides" content="cover">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito+Sans:wght@400;600;800&display=swap">
+        <link rel="stylesheet" href="./assets/css/style.css">
+        <div class="shell" id="shell">
+            <header>
+                <div class="brand">
+                    <div class="mark" aria-hidden="true">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </div>
+                    Ludo Night
+                </div>
+                <div class="hbtns">
+                    <button
+                        class="chip"
+                        id="muteBtn"
+                        type="button"
+                        aria-pressed="false"
+                    >Sound on</button>
+                    <button class="chip" id="newBtn" type="button">New game</button>
+                </div>
+            </header>
+            <main class="stage">
+                <section class="board-col">
+                    <div class="turnbar" aria-live="polite">
+                        <div class="dot" id="turnDot"></div>
+                        <div class="msg">
+                            <b id="turnName">Ready</b>
+                            <span id="turnMsg">Choose players to begin</span>
+                        </div>
+                    </div>
+                    <div class="board-wrap">
+                        <div class="board" id="board">
+                            <div class="tokens" id="tokens"></div>
+                        </div>
+                    </div>
+                </section>
+                <aside class="side">
+                    <div class="card dicecard">
+                        <button
+                            class="die"
+                            id="die"
+                            type="button"
+                            aria-label="Roll the die"
+                            disabled
+                        ></button>
+                        <div class="dicetext">
+                            <b id="diceTitle">Waiting</b>
+                            <span id="diceSub">Start a game to roll</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h2>Players</h2>
+                        <ul class="plist" id="plist"></ul>
+                    </div>
+                    <div class="card">
+                        <h2>Moves</h2>
+                        <ul class="log" id="log" aria-live="polite"></ul>
+                    </div>
+                </aside>
+            </main>
+        </div>
+        <div class="overlay" id="setup">
+            <div
+                class="modal"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="setupTitle"
+            >
+                <h1 id="setupTitle">Ludo Night</h1>
+                <p>Race four pawns around the board and into the centre. Pick who plays each colour.</p>
+                <div class="presets">
+                    <button class="chip" type="button" data-preset="duel">You vs 1 computer</button>
+                    <button class="chip" type="button" data-preset="trio">You vs 3 computers</button>
+                    <button class="chip" type="button" data-preset="party">4 friends, one screen</button>
+                </div>
+                <div id="rows" style="display:flex;flex-direction:column;gap:8px"></div>
+                <div class="hint" id="hint" aria-live="polite"></div>
+                <details>
+                    <summary>How to play</summary>
+                    <ul>
+                        <li>Roll a 6 to bring a pawn out of your base.</li>
+                        <li>A 6, a capture, or getting a pawn home gives you another roll.</li>
+                        <li>Land on an opponent to send it back to base. Stars and start squares are safe.</li>
+                        <li>Three 6s in a row and your turn is lost.</li>
+                        <li>You need the exact number to reach the centre.</li>
+                    </ul>
+                </details>
+                <div class="btns">
+                    <button class="btn" id="startBtn" type="button">Start game</button>
+                </div>
+            </div>
+        </div>
+        <div class="overlay" id="win" hidden>
+            <div
+                class="modal"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="winTitle"
+                style="--pc:var(--red)"
+            >
+                <h1 id="winTitle">Game over</h1>
+                <ol class="rank" id="rank"></ol>
+                <div class="btns">
+                    <button class="btn" id="againBtn" type="button">Play again</button>
+                    <button class="btn ghost" id="changeBtn" type="button">Change players</button>
+                </div>
+            </div>
+        </div>
+        <canvas id="confetti" aria-hidden="true"></canvas>
+        <script src="./assets/js/script.js"></script>
+    </body>
+</html>
